@@ -37,15 +37,15 @@ jobs:
       run: |
         echo "给apk增加签名"
         cp yuedu/.github/workflows/legado.jks yuedu/app/legado.jks
-        sed '$a\RELEASE_STORE_FILE=./legado.jks'          yuedu/gradle.properties -i 
-        sed '$a\RELEASE_KEY_ALIAS=legado'                 yuedu/gradle.properties -i
-        sed '$a\RELEASE_STORE_PASSWORD=gedoor_legado'     yuedu/gradle.properties -i
-        sed '$a\RELEASE_KEY_PASSWORD=gedoor_legado'       yuedu/gradle.properties -i
-    - name: apk live together
-      run: |
-        echo "设置apk共存"
-        sed "s/'.release'/'.releaseA'/" yuedu/app/build.gradle  -i
-        sed 's/.release/.releaseA/'     yuedu/app/google-services.json -i
+        sed -i '$a\RELEASE_STORE_FILE=./legado.jks'          yuedu/gradle.properties  
+        sed -i '$a\RELEASE_KEY_ALIAS=legado'                 yuedu/gradle.properties
+        sed -i '$a\RELEASE_STORE_PASSWORD=gedoor_legado'     yuedu/gradle.properties
+        sed -i '$a\RELEASE_KEY_PASSWORD=gedoor_legado'       yuedu/gradle.properties
+    #- name: apk live together
+    #  run: |
+    #    echo "设置apk共存"
+    #    sed -i "s/'.release'/'.releaseA'/" yuedu/app/build.gradle 
+    #    sed-i 's/.release/.releaseA/'     yuedu/app/google-services.json 
     - name: build with gradle
       run: |
         cd yuedu
@@ -56,5 +56,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: legado apk
+        name: YueDu
         path: yuedu/app/build/outputs/apk/app/release
