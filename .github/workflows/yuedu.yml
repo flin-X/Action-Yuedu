@@ -10,8 +10,8 @@ on:
     types: [started]
   schedule:
     - cron: '0 4 * * *'
-    
- env:
+      
+env:
   REPO_URL: https://github.com/gedoor/legado.git
 
 jobs:
