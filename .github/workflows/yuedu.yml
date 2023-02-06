@@ -22,7 +22,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Clone source code
       run: git clone $REPO_URL yuedu
       
@@ -51,7 +51,7 @@ jobs:
         ./gradlew assembleAppRelease
     - name : upload apk
       if: ${{ env.UPLOAD_ARTIFACT == 'true' }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: YueDu
         path: yuedu/app/build/outputs/apk/app/release
