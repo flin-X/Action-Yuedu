@@ -22,11 +22,11 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4.1.1
     - name: Clone source code
       run: git clone $REPO_URL yuedu
     - name: Set up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4.1.0
       with:
         distribution: 'temurin'
         java-version: 17
@@ -55,7 +55,7 @@ jobs:
         ./gradlew assembleAppRelease
     - name : upload apk
       if: ${{ env.UPLOAD_ARTIFACT == 'true' }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.3.1
       with:
         name: YueDu
         path: yuedu/app/build/outputs/apk/app/release
